@@ -6,5 +6,6 @@ export const BASE_COLOR = {
     yellow: '#FFBA7C',
     pink: '#FFDEEF',
     brown: '#573353',
-    brown20 : '#bcadba'
+    brown20 : '#bcadba',
+    blurYellow: '#FFF3E9'
 }

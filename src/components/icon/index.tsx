@@ -1,8 +1,12 @@
 import React, { FunctionComponent } from "react";
-import Onboard from "@/assets/images/onboard.svg";
+import facebook from "@/assets/images/facebook.svg";
+import google from "@/assets/images/google.svg";
+import mail from "@/assets/images/mail.svg";
 
 const iconTypes = {
-  Onboard: Onboard,
+  facebook,
+  google,
+  mail
 };
 
 interface IProps {
