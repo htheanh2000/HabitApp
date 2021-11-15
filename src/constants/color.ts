@@ -9,3 +9,8 @@ export const BASE_COLOR = {
     brown20 : '#bcadba',
     blurYellow: '#FFF3E9'
 }
+
+export const BLUR_COLOR = {
+    brown10: '#ddd6dd',
+    
+}

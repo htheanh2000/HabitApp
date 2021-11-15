@@ -3,7 +3,7 @@ import * as Screen from '@/screens'
 
 const App = () => {
   return (
-      <Screen.SignUpScreen />
+      <Screen.ResetPasswordScreen />
   );
 };
 
