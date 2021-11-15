@@ -6,7 +6,7 @@ interface IProps {
     color?: string
     fontSize?: number
     fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | 'bold' | 'normal'
-    style?: TextStyle | TextStyle[]
+    style?: TextStyle 
 }
 
 const CustomText: FunctionComponent<IProps> = (props) => {
