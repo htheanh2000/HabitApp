@@ -1,13 +1,21 @@
 import { Button, Icon, Text, TextInput } from '@/components'
 import { BASE_COLOR, BLUR_COLOR } from '@/constants/color'
 import { S_WIDTH } from '@/constants/layout'
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { SafeAreaView, StyleSheet, View } from 'react-native'
 
 const ResetScreen = () => {
+    const navigation = useNavigation()
+    const goBack = () => {
+        navigation.goBack()
+    }
+    const signIn = () => {
+        navigation.navigate('sign-in' as never)
+    }
     return(
         <SafeAreaView style={styles.container}>
-            <Icon name='back' blurBackground style={styles.backIcon}/>
+            <Icon name='back' blurBackground style={styles.backIcon} onPress={goBack}/>
             <Text style={styles.title}>Forgot Your Password ?</Text>
             <Icon name='resetPassword' />
             <View style={styles.modal}>
@@ -18,7 +26,7 @@ const ResetScreen = () => {
 
             <View style={styles.rememberTxt}>
                 <Text type='small'>Already have an account?</Text>
-                <Text type='small' style={{fontWeight:'700'}}> Sign In</Text>
+                <Text type='small' style={{fontWeight:'700'}} onPress={signIn}> Sign In</Text>
             </View>
         </SafeAreaView>
     )

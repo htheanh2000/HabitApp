@@ -1,10 +1,11 @@
 import { Button, Indicator, Text } from '@/components'
 import React, { createRef, useState } from 'react'
-import { Pressable, SafeAreaView, StyleSheet } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import { content, title } from './content'
 import { View } from 'react-native'
 import { S_HEIGHT, S_WIDTH } from '@/constants/layout'
 import { BASE_COLOR } from '@/constants/color'
+import { useNavigation } from '@react-navigation/core'
 
 interface IRef {
     next: () => void
@@ -12,6 +13,7 @@ interface IRef {
 
 const IntroScreen = () => {
     const indicatorRef = createRef<IRef>()
+    const navigation = useNavigation()
     const [index, setIndex] = useState(0)
     const getColor = (color: string) => {
         const colorStr = color as keyof typeof BASE_COLOR
@@ -25,16 +27,14 @@ const IntroScreen = () => {
         return <Icon />
     }
     const getStarted = () => {
-        setIndex(0)
+        navigation.navigate('sign-in' as never)
     }
     return (
         <SafeAreaView style={styles.container}>
-
             <View style={styles.contentView}>
                 <Text style={styles.title}>{title[index].text}</Text>
                 <View style={styles.image}>
                     {renderImage(title[index].image)}
-
                 </View>
                 {
                     content.map((item, index) =>
@@ -45,11 +45,9 @@ const IntroScreen = () => {
                 index === title.length - 1 ?
                     <Button onPress={getStarted}>GET STARTED</Button>
                     : <View style={styles.control}>
-                        <Text>Skip</Text>
+                        <Text onPress={getStarted}>Skip</Text>
                         <Indicator ref={indicatorRef} />
-                        <Pressable onPress={onPressNext}>
-                            <Text>Next</Text>
-                        </Pressable>
+                        <Text onPress={onPressNext}>Next</Text>
                     </View>
             }
         </SafeAreaView>
@@ -59,7 +57,9 @@ const IntroScreen = () => {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        flex: 1,
+        backgroundColor: BASE_COLOR.white
     },
     title: {
         marginBottom: 50,

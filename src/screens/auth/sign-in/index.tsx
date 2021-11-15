@@ -5,8 +5,18 @@ import OnboardSvg from '@/assets/images/onboard.svg'
 import { S_HEIGHT, S_WIDTH } from '@/constants/layout'
 import LinearGradient from 'react-native-linear-gradient';
 import { BASE_COLOR } from '@/constants/color'
+import { useNavigation } from '@react-navigation/core'
 
 const SignInScreen = () => {
+    const navigation = useNavigation()
+    const signUp = () => {
+        navigation.navigate('sign-up' as never)
+    }
+    const forgotPassword = () => {
+        navigation.navigate('reset-password' as never)
+    }
+
+    // const 
     return (
         <View style={styles.container}>
             <View style={styles.background}>
@@ -35,14 +45,15 @@ const SignInScreen = () => {
 
                 <View style={styles.modal}>
                     <Text style={styles.emailText}>Log in with email</Text>
-                    <View style={styles.line}/>
-                    <TextInput icon='mail' placeholder='Email' />
-                    <TextInput icon='lock' placeholder='Password' rightTxt='Show'/>
+                    <View style={styles.line} />
+                    <TextInput  icon='mail' placeholder='Email' />
+                    <TextInput icon='lock' placeholder='Password' rightTxt='Show' /> 
                     <Button>Login</Button>
-                    <Text style={{...styles.smlTxt, marginTop: 10,textDecorationLine: 'underline'}}>Forgot Password ?</Text>
+                    <Text style={{ ...styles.smlTxt, marginTop: 10, textDecorationLine: 'underline' }} onPress={forgotPassword}>Forgot Password ?</Text>
+
                     <View style={styles.signUpTxt}>
                         <Text style={styles.smlTxt}>Don't have an account? </Text>
-                        <Text style={{...styles.smlTxt, fontWeight: '600'}}>Sign Up</Text>
+                        <Text style={{ ...styles.smlTxt, fontWeight: '600' }} onPress={signUp}>Sign Up</Text>
                     </View>
                 </View>
             </View>
@@ -104,11 +115,11 @@ const styles = StyleSheet.create({
     modal: {
         width: S_WIDTH,
         marginTop: 20,
-        height: S_HEIGHT*1/2,
+        height: S_HEIGHT * 1 / 2,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         backgroundColor: BASE_COLOR.white,
-        alignItems:'center'
+        alignItems: 'center'
     },
     emailText: {
         margin: 20,
@@ -129,7 +140,7 @@ const styles = StyleSheet.create({
     },
     miniIcon: {
         marginLeft: 20,
-        marginRight: 40  
+        marginRight: 40
     },
     txtInput: {
         color: BASE_COLOR.brown,
@@ -138,19 +149,19 @@ const styles = StyleSheet.create({
     showTxt: {
         fontSize: 13,
         textDecorationLine: 'underline',
-        fontWeight:'400',
+        fontWeight: '400',
     },
     smlTxt: {
         marginBottom: 10,
         fontSize: 12,
-        fontWeight:'400',
-        
+        fontWeight: '400',
+
     },
     signUpTxt: {
         height: 50,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems:'center',
+        alignItems: 'center',
     },
     svgBg: {
 

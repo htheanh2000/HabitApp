@@ -11,7 +11,7 @@ const Button:FunctionComponent<IProps> = (props) => {
     const {children, onPress} = props
     return (
         <Pressable style={styles.container} onPress={onPress}>
-            <Text>{children}</Text>
+            <Text onPress={onPress}>{children}</Text>
         </Pressable>
     )
 }

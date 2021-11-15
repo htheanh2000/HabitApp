@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import OnboardSvg from '@/assets/images/onboard.svg'
 import {S_WIDTH, S_HEIGHT} from '@/constants/layout'
 import { Text } from '@/components'
+import { useNavigation } from '@react-navigation/core'
+import { getUser } from '@/firebase'
 const SplashScreen = () => {
+    const navigation = useNavigation()
+    useEffect(() => {
+        checkUser()
+    }, [])
+
+    const checkUser = async () => {
+        const user = await getUser()
+        if(!user) {
+            navigation.navigate('intro' as never)
+        }
+        else {
+            navigation.navigate('homepage' as never)
+        }
+        
+    }
+    
     return (
         <View style={styles.container}>
             <OnboardSvg width={S_WIDTH} height={S_HEIGHT}/>

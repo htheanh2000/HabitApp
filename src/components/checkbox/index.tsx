@@ -16,12 +16,12 @@ const CheckBox: FunctionComponent<IProps> = (props) => {
         setFocus(!isFocused)
     }
     return (
-        <View style={styles.container}>
-            <Pressable style={styles.icon} onPress={onPress}>
+        <Pressable style={styles.container} onPress={onPress}>
+            <View style={styles.icon}>
                 {isFocused && <Icon name='check' />}
-            </Pressable>
-            <Text style={styles.txt}>{text}</Text>
-        </View>
+            </View>
+            <Text style={styles.txt} onPress={onPress}>{text}</Text>
+        </Pressable>
     )
 }
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 20,
     },
     icon: {
         marginRight: 10,

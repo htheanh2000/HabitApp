@@ -1,35 +1,36 @@
 import React, { FunctionComponent } from 'react'
-import { Text, TextStyle } from 'react-native'
+import { Pressable, Text, TextStyle } from 'react-native'
 import { BASE_COLOR } from '@/constants/color'
 interface IProps {
     status?: 'NORMAL' | 'DEACTIVE' | string
     color?: string
     fontSize?: number
     fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | 'bold' | 'normal'
-    style?: TextStyle 
+    style?: TextStyle
     type?: 'small' | 'normal'
+    onPress?: () => void
 }
 
 const CustomText: FunctionComponent<IProps> = (props) => {
-    const { children, color, fontSize, fontWeight, style, type } = props
+    const { children, color, fontSize, fontWeight, style, type, onPress } = props
 
 
-    const getStyleByType = ()  : TextStyle =>{
+    const getStyleByType = (): TextStyle => {
         switch (type) {
             case 'small':
-               return {
+                return {
                     fontSize: 13,
                     fontWeight: '300',
                     textAlign: 'center'
-               } 
+                }
             default:
                 return {};
         }
     }
 
-    const typeStyle:TextStyle = getStyleByType()
+    const typeStyle: TextStyle = getStyleByType()
 
-    const textStyle:TextStyle = {
+    const textStyle: TextStyle = {
         color: color || BASE_COLOR.brown,
         fontWeight: fontWeight,
         fontSize,
@@ -38,7 +39,9 @@ const CustomText: FunctionComponent<IProps> = (props) => {
     }
 
     return (
-        <Text style={[textStyle]}>{children}</Text>
+        <Pressable onPress={onPress}>
+            <Text style={[textStyle]}>{children}</Text>
+        </Pressable>
     )
 }
 
