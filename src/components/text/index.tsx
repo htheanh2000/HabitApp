@@ -37,8 +37,8 @@ const CustomText: FunctionComponent<IProps> = (props) => {
         ...typeStyle,
         ...style,
     }
-
-    return (
+    if(!onPress) return <Text style={[textStyle]}>{children}</Text>
+    else return (
         <Pressable onPress={onPress}>
             <Text style={[textStyle]}>{children}</Text>
         </Pressable>

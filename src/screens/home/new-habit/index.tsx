@@ -1,9 +1,31 @@
-import { Icon, Text, Header, TextInput } from '@/components'
+import { Icon, Text, Header, TextInput, Progress, Switch, Guide } from '@/components'
 import { BASE_COLOR } from '@/constants/color'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { WEEK } from '@/helper'
 const NewHabitScreen = () => {
+    const [week, setWeek] = useState<any>([])
+    useEffect(() => {
+        const arr = WEEK.map((item, index) => {
+            let type = 'full'
+            switch (index) {
+                case 5:
+                    type = 'half'
+                    break;
+                case 6:
+                    type = 'none'
+                default:
+                    break;
+            }
+            return {
+                day: item,
+                type
+            }
+        })
+        console.log(arr.length);
+
+        setWeek(arr)
+    }, [])
     return (
         <View style={styles.container}>
             <Icon name='cloud' style={styles.cloud} />
@@ -24,14 +46,32 @@ const NewHabitScreen = () => {
                     </View>
                 </View>
                 <View style={styles.row}>
-                    {WEEK.map((item: string) =>
-                        <View key={item} style={styles.dayBl}>
-                            <Text style={styles.dayTxt}>{item}</Text>
+                    {week.map((item: any, index: number) =>
+                        <View key={item.day} style={styles.dayBl}>
+                            <Text style={styles.dayTxt}>{item.day}</Text>
+                            <Progress status={item.type} />
                         </View>
                     )}
                 </View>
-
             </View>
+
+            <View style={[styles.card]}>
+                <View style={styles.headerCard}>
+                    <Text style={styles.freTxt}>Reminder</Text>
+                    <View style={styles.row}>
+                        <Text style={styles.customTxt}>10:00AM </Text>
+                        <Icon name='rightArrow' />
+                    </View>
+                </View>
+            </View>
+
+            <View style={[styles.card]}>
+                <View style={styles.headerCard}>
+                    <Text style={styles.freTxt}>Notification</Text>
+                    <Switch />
+                </View>
+            </View>
+            <Guide style={styles.guide}/>
         </View>
     )
 }
@@ -69,7 +109,8 @@ const styles = StyleSheet.create({
     },
     card: {
         backgroundColor: BASE_COLOR.white,
-        borderRadius: 12
+        borderRadius: 12,
+        marginTop: 10
     },
     freTxt: {
         fontSize: 18,
@@ -82,21 +123,28 @@ const styles = StyleSheet.create({
     },
     headerCard: {
         flexDirection: 'row',
-        margin: 20,
-        alignItems: 'flex-end',
+        margin: 10,
+        alignItems: 'center',
         justifyContent: 'space-between'
     },
     dayBl: {
-        flex: 1/7,
+        flex: 1 / 7,
         height: 80,
         borderWidth: .5,
         borderColor: BASE_COLOR.blurYellow,
-        alignItems:'center',
+        alignItems: 'center',
         borderTopWidth: 1,
         paddingTop: 10
     },
     dayTxt: {
-        fontWeight: '400'
+        fontWeight: '400',
+        textTransform: 'uppercase',
+        marginBottom: 3
+    },
+    guide: {
+        position: 'absolute',
+        left: 14,
+        bottom: 40
     }
 })
 export default NewHabitScreen

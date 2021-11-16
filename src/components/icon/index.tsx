@@ -21,6 +21,8 @@ import add from "@/assets/images/add.svg";
 import reader from "@/assets/images/reader.svg";
 import smlPlus from "@/assets/images/sml-plus.svg";
 import rightArrow from "@/assets/images/right-arrow.svg";
+import downArrow from "@/assets/images/down-arrow.svg";
+import mentor from "@/assets/images/community.svg";
 import { Pressable, StyleSheet } from "react-native";
 import { BLUR_COLOR } from "@/constants/color";
 
@@ -46,7 +48,9 @@ const iconTypes = {
   add,
   reader,
   smlPlus,
-  rightArrow
+  rightArrow,
+  downArrow,
+  mentor
 };
 
 interface IProps {

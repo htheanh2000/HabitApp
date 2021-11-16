@@ -10,11 +10,14 @@ export const BASE_COLOR = {
     blurYellow: '#FFF3E9',
     transparent: '#00000000',
     background: '#FFF3E9',
-    boldYellow: '#FDA758'
+    boldYellow: '#FDA758',
+    violet: '#573353'
 }
 
 export const BLUR_COLOR = {
     brown10: '#ddd6dd',
-    yellowTab: '#FFDFC1'
-    
+    yellowTab: '#FFDFC1',
+    violet10: '#ddd6dd',
+    yellowSwitch20: '#FDA75850',
+    yellowSwitch: '#FDA758',
 }
