@@ -48,7 +48,7 @@ Input.defaultProps = {
 const styles = StyleSheet.create({
     input: {
         height: 60,
-        width: S_WIDTH - 50,
+        flex: 1,
         borderRadius: 12,
         flexDirection: 'row',
         alignItems: 'center',

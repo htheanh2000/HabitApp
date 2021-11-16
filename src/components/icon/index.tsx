@@ -10,7 +10,18 @@ import back from "@/assets/images/back.svg";
 import resetPassword from "@/assets/images/reset-password.svg";
 import menu from "@/assets/images/menu.svg";
 import avatar from "@/assets/images/avatar.svg";
-import { Pressable, StyleSheet, View } from "react-native";
+import homepage from "@/assets/images/homepage.svg";
+import cloud from "@/assets/images/cloud.svg";
+import home from "@/assets/images/home.svg";
+import course from "@/assets/images/courses.svg";
+import community from "@/assets/images/community.svg";
+import setting from "@/assets/images/setting.svg";
+import tab from "@/assets/images/tab.svg";
+import add from "@/assets/images/add.svg";
+import reader from "@/assets/images/reader.svg";
+import smlPlus from "@/assets/images/sml-plus.svg";
+import rightArrow from "@/assets/images/right-arrow.svg";
+import { Pressable, StyleSheet } from "react-native";
 import { BLUR_COLOR } from "@/constants/color";
 
 const iconTypes = {
@@ -24,13 +35,25 @@ const iconTypes = {
   back,
   resetPassword,
   menu,
-  avatar
+  avatar,
+  homepage,
+  cloud,
+  home,
+  course,
+  community,
+  setting,
+  tab,
+  add,
+  reader,
+  smlPlus,
+  rightArrow
 };
 
 interface IProps {
   name: IIconName,
   size?: number,
   style?: any,
+  width?: number,
   blurBackground?: boolean,
   onPress?: () => void
 }
@@ -38,12 +61,13 @@ interface IProps {
 export type IIconName = keyof typeof iconTypes
 
 const IconComponent: FunctionComponent<IProps> = (props) => {
-  const { name, size, style, blurBackground, onPress } = props
+  const { name, size, style, blurBackground, onPress, width } = props
   const Icon = iconTypes[name];
 
  
-
-  if (size)
+  if (width)
+    return <Icon width={width} style={style}/>;
+  else if (size)
     return <Icon width={size} height={size} style={style}/>;
   else
     return (
