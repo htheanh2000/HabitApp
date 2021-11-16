@@ -18,6 +18,7 @@ const Button:FunctionComponent<IProps> = (props) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         width: S_WIDTH-50,
         height: 60,
         backgroundColor: BASE_COLOR.yellow,

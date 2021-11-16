@@ -23,6 +23,8 @@ import smlPlus from "@/assets/images/sml-plus.svg";
 import rightArrow from "@/assets/images/right-arrow.svg";
 import downArrow from "@/assets/images/down-arrow.svg";
 import mentor from "@/assets/images/community.svg";
+import notiOff from "@/assets/images/noti-off.svg";
+import notiOn from "@/assets/images/noti-on.svg";
 import { Pressable, StyleSheet } from "react-native";
 import { BLUR_COLOR } from "@/constants/color";
 
@@ -50,7 +52,9 @@ const iconTypes = {
   smlPlus,
   rightArrow,
   downArrow,
-  mentor
+  mentor,
+  notiOff,
+  notiOn
 };
 
 interface IProps {

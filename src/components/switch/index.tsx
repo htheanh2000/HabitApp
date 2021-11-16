@@ -3,11 +3,21 @@ import React, { FunctionComponent, useState } from 'react'
 import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
 import Text from '../text'
 
-const Switch: FunctionComponent = () => {
-    const [isActive, setStatus] = useState(false)
+interface IProps {
+    status?: boolean
+    onPress?: () => void
+}
+const Switch: FunctionComponent<IProps> = (props) => {
+    const {status,onPress} = props
+    const [isActive, setStatus] = useState(status)
 
-    const onPress = () => {
-        setStatus(!isActive)
+    const onPressLocal = () => {
+        if(onPress) {
+            onPress()
+        }
+        else {
+            setStatus(!isActive)
+        }
     }
 
     const getStyle = (): ViewStyle => {
@@ -33,12 +43,16 @@ const Switch: FunctionComponent = () => {
     }
 
     return (
-        <Pressable style={[styles.container, getStyle()]} onPress={onPress}>
+        <Pressable style={[styles.container, getStyle()]} onPress={onPressLocal}>
             <View style={[styles.togge, getToggleColor()]} />
             <Text style={{ ...styles.content, ...getTextColor() }}>{isActive ? 'On' : 'Off'}</Text>
         </Pressable>
 
     )
+}
+
+Switch.defaultProps = {
+    status: true
 }
 
 const styles = StyleSheet.create({

@@ -18,7 +18,6 @@ const Guide:FunctionComponent<IProps> = (props) => {
             <Text style={styles.title}>start this habit</Text>
             <Text style={styles.content}>Click here to start habits, we'll always follow and help you</Text>
             <Icon name='downArrow'/>
-
         </View>
     )
 }
