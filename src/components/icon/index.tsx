@@ -36,6 +36,14 @@ import locked from "@/assets/images/locked.svg";
 import love from "@/assets/images/love.svg";
 import comment from "@/assets/images/comment.svg";
 import share from "@/assets/images/share.svg";
+import notification from "@/assets/images/notification.svg";
+import threeDot from "@/assets/images/three-dot.svg";
+import phone from "@/assets/images/phone.svg";
+import viRiArrow from "@/assets/images/violet-right-arrow.svg";
+import contact from "@/assets/images/contact.svg";
+import feedback from "@/assets/images/feedback.svg";
+import policy from "@/assets/images/policy.svg";
+import about from "@/assets/images/about.svg";
 // jpg
 import blurSetting from "@/assets/images/Settings.jpg";
 import blurCourse from "@/assets/images/blur-course.jpg";
@@ -81,15 +89,22 @@ const iconTypes = {
   locked,
   love,
   comment,
-  share
+  share,
+  notification,
+  threeDot,
+  viRiArrow,
+  phone,
+  contact,
+  about,
+  policy,
+  feedback
 };
 
 const imgTypes = {
   blurSetting,
   blurHome,
   blurCommunity,
-  blurCourse
-
+  blurCourse,
 }
 
 interface IProps {
