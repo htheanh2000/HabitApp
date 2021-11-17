@@ -38,10 +38,10 @@ const CustomText: FunctionComponent<IProps> = (props) => {
         ...typeStyle,
         ...style,
     }
-    if (!onPress) return <Text numberOfLines={numberOfLines} style={[textStyle, numberOfLines ? { width: 200 } : {}]}>{children}</Text>
+    if (!onPress) return <Text numberOfLines={numberOfLines} style={[numberOfLines ? { width: 200 } : {}, textStyle]}>{children}</Text>
     else return (
         <Pressable onPress={onPress}>
-            <Text numberOfLines={numberOfLines} style={[textStyle, numberOfLines ? { width: 200 } : {}]}>{children}</Text>
+            <Text numberOfLines={numberOfLines} style={[numberOfLines ? { width: 200 } : {}, textStyle]}>{children}</Text>
         </Pressable>
     )
 }

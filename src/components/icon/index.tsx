@@ -12,7 +12,7 @@ import menu from "@/assets/images/menu.svg";
 import avatar from "@/assets/images/avatar.svg";
 import homepage from "@/assets/images/homepage.svg";
 import cloud from "@/assets/images/cloud.svg";
-import home from "@/assets/images/home.svg";
+import home from "@/assets/images/home1.svg";
 import course from "@/assets/images/courses.svg";
 import community from "@/assets/images/community.svg";
 import setting from "@/assets/images/setting.svg";
@@ -33,6 +33,9 @@ import dropdown from "@/assets/images/downArrow.svg";
 import mark from "@/assets/images/mark.svg";
 import play from "@/assets/images/play.svg";
 import locked from "@/assets/images/locked.svg";
+import love from "@/assets/images/love.svg";
+import comment from "@/assets/images/comment.svg";
+import share from "@/assets/images/share.svg";
 // jpg
 import blurSetting from "@/assets/images/Settings.jpg";
 import blurCourse from "@/assets/images/blur-course.jpg";
@@ -75,7 +78,10 @@ const iconTypes = {
   dropdown,
   mark,
   play,
-  locked
+  locked,
+  love,
+  comment,
+  share
 };
 
 const imgTypes = {

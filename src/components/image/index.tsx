@@ -8,6 +8,10 @@ import blurHome from "@/assets/images/blur-home.jpg";
 import lesson1 from "@/assets/images/lesson-1.png";
 import lesson2 from "@/assets/images/lesson-2.png";
 import video from "@/assets/images/video.png";
+import ava1 from "@/assets/images/avatar/ava-1.png";
+import ava2 from "@/assets/images/avatar/ava-2.png";
+import ava3 from "@/assets/images/avatar/ava-3.png";
+import ava4 from "@/assets/images/avatar/ava-4.png";
 import { Image, ImageStyle } from "react-native";
 
 const imgTypes = {
@@ -17,7 +21,11 @@ const imgTypes = {
   blurCourse,
   lesson1,
   lesson2,
-  video
+  video,
+  ava1,
+  ava2,
+  ava3,
+  ava4
 }
 
 interface IProps {

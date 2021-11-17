@@ -18,7 +18,6 @@ const Header: FunctionComponent<IProps>=(props)=> {
             case 'back':
                 navigation.goBack()
                 break;
-        
             default:
                 break;
         }
@@ -40,7 +39,8 @@ const styles = StyleSheet.create({
         marginTop: 50
     },
     title: {
-        fontSize: 18
+        fontSize: 18,
+        textAlign: 'center'
     },
     emptyView: {
         width: 40,

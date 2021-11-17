@@ -62,13 +62,13 @@ const App = () => {
     const size = 40
     switch (label) {
       case 'home-tab':
-        return isFocused ? <Icon name='home' size={size} /> : <Icon img='blurHome' size={size} />
+        return isFocused ? <Icon name='home' /> : <Icon img='blurHome' />
       case 'course-tab':
-        return isFocused ? <Icon name='course' size={size} /> : <Icon img='blurCourse' size={size} />
+        return isFocused ? <Icon name='course' /> : <Icon img='blurCourse' />
       case 'community':
-        return isFocused ? <Icon name='community' size={size} /> : <Icon img='blurCommunity' size={size} />
+        return isFocused ? <Icon name='community' /> : <Icon img='blurCommunity' />
       case 'setting':
-        return isFocused ? <Icon name='setting' size={size} /> : <Icon img='blurSetting' size={size} />
+        return isFocused ? <Icon name='setting' /> : <Icon img='blurSetting' />
       default:
         return <View />
     }
