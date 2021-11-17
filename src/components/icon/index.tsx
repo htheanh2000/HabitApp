@@ -25,7 +25,12 @@ import downArrow from "@/assets/images/down-arrow.svg";
 import mentor from "@/assets/images/community.svg";
 import notiOff from "@/assets/images/noti-off.svg";
 import notiOn from "@/assets/images/noti-on.svg";
-import { Pressable, StyleSheet } from "react-native";
+import checkBtn from "@/assets/images/check-btn.svg";
+import blurSetting from "@/assets/images/Settings.jpg";
+import blurCourse from "@/assets/images/blur-course.jpg";
+import blurCommunity from "@/assets/images/blur-community.jpg";
+import blurHome from "@/assets/images/blur-home.jpg";
+import { Image, Pressable, StyleSheet } from "react-native";
 import { BLUR_COLOR } from "@/constants/color";
 
 const iconTypes = {
@@ -54,11 +59,21 @@ const iconTypes = {
   downArrow,
   mentor,
   notiOff,
-  notiOn
+  notiOn,
+  checkBtn,
 };
 
+const imgTypes = {
+  blurSetting,
+  blurHome,
+  blurCommunity,
+  blurCourse
+
+}
+
 interface IProps {
-  name: IIconName,
+  name?: IIconName,
+  img?: keyof typeof imgTypes ,
   size?: number,
   style?: any,
   width?: number,
@@ -66,14 +81,19 @@ interface IProps {
   onPress?: () => void
 }
 
-export type IIconName = keyof typeof iconTypes
+export type IIconName = keyof typeof iconTypes 
 
 const IconComponent: FunctionComponent<IProps> = (props) => {
-  const { name, size, style, blurBackground, onPress, width } = props
-  const Icon = iconTypes[name];
+  const { img, name, size, style, blurBackground, onPress, width } = props
+  const Icon = name ? iconTypes[name] : iconTypes['add'] ;
 
- 
-  if (width)
+  if(img) {
+    if(size)
+    return <Image source={imgTypes[img]} width={size} height={size}/>
+    else 
+    return <Image source={imgTypes[img]} />
+  }
+  else if (width)
     return <Icon width={width} style={style}/>;
   else if (size)
     return <Icon width={size} height={size} style={style}/>;

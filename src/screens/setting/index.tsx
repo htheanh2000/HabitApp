@@ -1,12 +1,12 @@
-import { Text } from '@/components'
+import { Screen, Text } from '@/components'
 import React from 'react'
 import { View } from 'react-native'
 
 const SettingScreen = () => {
     return (
-        <View>
+        <Screen>
             <Text>Setting</Text>
-        </View>
+        </Screen>
     )
 }
 

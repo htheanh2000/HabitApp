@@ -1,4 +1,4 @@
-import { Header, Icon, Text } from '@/components'
+import { Header, Icon, Screen, Text } from '@/components'
 import mainStyles from '@/constants/style'
 import React, { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
@@ -22,7 +22,7 @@ const HomeScreen = () => {
         )
     }
     return(
-        <View style={[mainStyles.container]}>
+        <Screen>
             <Icon name='cloud' style={styles.cloud}/>
             <View style={styles.container}>
               <Header leftIcon='menu' rightIcon='avatar' title='Homepage'/>
@@ -42,7 +42,7 @@ const HomeScreen = () => {
                   />
               </View>
             </View>
-        </View>
+        </Screen>
     )
 }
 

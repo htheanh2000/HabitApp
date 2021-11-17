@@ -6,7 +6,7 @@ import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/b
 import auth from '@react-native-firebase/auth';
 import { BASE_COLOR, BLUR_COLOR } from '@/constants/color';
 import { Pressable, StyleSheet, TouchableOpacity, TouchableOpacityBase, TouchableWithoutFeedback, View } from 'react-native';
-import { Icon } from '@/components';
+import { Icon, Screen } from '@/components';
 import { S_WIDTH } from '@/constants/layout';
 const App = () => {
 
@@ -50,7 +50,6 @@ const App = () => {
               <View style={[styles.tabView, isFocused && styles.tabViewFocus]}>
                 {renderIcon(label.toString(), isFocused, onPress)}
               </View>
-
             </TouchableWithoutFeedback>
           );
         })}
@@ -58,28 +57,38 @@ const App = () => {
     );
   }
 
-  const renderIcon = (label: string, isFocused: boolean,onPress: any) => {
+
+  const renderIcon = (label: string, isFocused: boolean, onPress: any) => {
     const size = 40
     switch (label) {
-      case 'homepage':
-        return <Icon name={'home'} size={size} />
+      case 'home':
+        return isFocused ? <Icon name='home' size={size} /> : <Icon img = 'blurHome' size={size} />
       case 'course':
-        return <Icon name={'course'} size={size} />
+        return isFocused ? <Icon name='course' size={size} /> : <Icon img = 'blurCourse' size={size} />
       case 'community':
-        return <Icon name={'community'} size={size} />
-        case 'setting':
-          return <Icon name={'setting'} size={size} />
+        return isFocused ? <Icon name='community' size={size} /> : <Icon img = 'blurCommunity' size={size} />
+      case 'setting':
+        return isFocused ? <Icon name='setting' size={size} /> : <Icon img = 'blurSetting' size={size} />
       default:
-        return <Icon name='add' style={styles.plusBtn} onPress={onPress}/>
+        return  <View/>
     }
   }
 
-  const HomeStack = () => {
+  const homeStack = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }} >
+        <Stack.Screen name="homepage" component={Screens.HomeScreen} />
+        <Tab.Screen name="new-habit" component={Screens.NewHabitScreen} />
+      </Stack.Navigator>
+    );
+  }
+
+  const tabStack = () => {
     return (
       <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={props => <MyTabBar {...props} />} >
-        <Tab.Screen name="homepage" component={Screens.HomeScreen} />
+        <Tab.Screen name="home" component={homeStack} />
         <Tab.Screen name="course" component={Screens.CourseScreen} />
-        <Tab.Screen name="new-habit" component={Screens.NewHabitScreen} />
+        <Tab.Screen name="fake-screen" component={Screen} />
         <Tab.Screen name="community" component={Screens.CommunityScreen} />
         <Tab.Screen name="setting" component={Screens.SettingScreen} />
       </Tab.Navigator>
@@ -94,7 +103,7 @@ const App = () => {
         <Stack.Screen name="sign-in" component={Screens.SignInScreen} />
         <Stack.Screen name="sign-up" component={Screens.SignUpScreen} />
         <Stack.Screen name="reset-password" component={Screens.ResetPasswordScreen} />
-        <Stack.Screen name="home-tab" component={HomeStack} />
+        <Stack.Screen name="home-tab" component={tabStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -107,10 +116,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   tabContainerView: {
+    position: 'absolute',
+    bottom: 0,
+    width: S_WIDTH,
+    height: 80,
     flexDirection: 'row',
     justifyContent: 'space-around',
-
-    backgroundColor: BLUR_COLOR.yellowTab,
+    backgroundColor: BASE_COLOR.transparent,
     paddingBottom: 20,
   },
   tabViewFocus: {
@@ -124,7 +136,7 @@ const styles = StyleSheet.create({
     width: S_WIDTH
   },
   plusBtn: {
-    position:'absolute',
+    position: 'absolute',
     top: -45,
     left: -31
   }

@@ -3,6 +3,7 @@ import React, {FunctionComponent} from 'react'
 import { StyleSheet, View } from 'react-native'
 import  Text  from '../text'
 import  Icon, {IIconName} from '../icon'
+import { useNavigation } from '@react-navigation/core'
 
 interface IProps {
     leftIcon?: IIconName,
@@ -11,9 +12,20 @@ interface IProps {
 }
 const Header: FunctionComponent<IProps>=(props)=> {
     const {leftIcon, title,rightIcon} = props
+    const navigation = useNavigation()
+    const onPressLeft = () => {
+        switch (leftIcon) {
+            case 'back':
+                navigation.goBack()
+                break;
+        
+            default:
+                break;
+        }
+    }
     return(
         <View style={styles.container}>
-            {leftIcon ? <Icon name={leftIcon} blurBackground/> : <View style={styles.emptyView}/>}
+            {leftIcon ? <Icon name={leftIcon} blurBackground onPress={onPressLeft}/> : <View style={styles.emptyView}/>}
             <Text style={styles.title}>{title}</Text>
             {rightIcon ? <Icon name={rightIcon} blurBackground/> : <View style={styles.emptyView}/>}
         </View>

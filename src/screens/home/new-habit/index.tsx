@@ -1,4 +1,4 @@
-import { Icon, Text, Header, TextInput, Progress, Switch, Guide, Button } from '@/components'
+import { Icon, Text, Header, TextInput, Progress, Switch, Guide, Button, Screen } from '@/components'
 import { BASE_COLOR, BLUR_COLOR } from '@/constants/color'
 import React, { useEffect, useState } from 'react'
 import { FlatList, Pressable, SafeAreaView, StyleSheet, View } from 'react-native'
@@ -142,7 +142,7 @@ const NewHabitScreen = () => {
         )
     }
     return (
-        <View style={styles.container}>
+        <Screen style={styles.container} bottomIcon={false}>
             <Icon name='cloud' style={styles.cloud} />
             <Header leftIcon='back' title='New Habit' />
             <View style={styles.search}>
@@ -214,14 +214,13 @@ const NewHabitScreen = () => {
                     <Button onPress={addReminder}>Add</Button>
                 </SafeAreaView>
             </Modal>
-        </View>
+            <Icon name='checkBtn' style={styles.checkBtn}  />
+        </Screen>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: BASE_COLOR.background,
         paddingHorizontal: 20
     },
     row: {
@@ -286,7 +285,7 @@ const styles = StyleSheet.create({
     guide: {
         position: 'absolute',
         left: 14,
-        bottom: 40
+        bottom: 40 + 80
     },
     modalContainer: {
         margin: 0,
@@ -334,6 +333,12 @@ const styles = StyleSheet.create({
     addReminder: {
         flexDirection: 'row',
         marginTop: 10,
+    },
+    checkBtn: {
+        position:'absolute',
+        left: S_WIDTH/2,
+        transform: [{translateX: -31}],
+        bottom: 52,
     }
 })
 export default NewHabitScreen

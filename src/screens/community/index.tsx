@@ -1,12 +1,12 @@
-import { Text } from '@/components'
+import { Screen, Text } from '@/components'
 import React from 'react'
 import { View } from 'react-native'
 
 const CommunityScreen = () => {
     return (
-        <View>
+        <Screen>
             <Text>Community</Text>
-        </View>
+        </Screen>
     )
 }
 
