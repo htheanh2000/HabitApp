@@ -11,7 +11,7 @@ export const BASE_COLOR = {
     transparent: '#00000000',
     background: '#FFF3E9',
     boldYellow: '#FDA758',
-    violet: '#573353'
+    violet: '#573353',
 }
 
 export const BLUR_COLOR = {

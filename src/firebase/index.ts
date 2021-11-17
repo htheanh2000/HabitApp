@@ -7,7 +7,7 @@ const database = firebase
 
 const signUp = async (email: string, password: string, username: string) => {
     console.log(email, password);
-   return auth()
+    return auth()
         .createUserWithEmailAndPassword(email, password)
         .then(async () => {
             console.log('User account created & signed in!');
@@ -75,7 +75,49 @@ const getUser = () => {
     else return null
 }
 
+const addHabit = async (habit: any) => {
+    if (auth().currentUser) {
+        const userId = auth().currentUser?.uid
+        if (userId) {
+            database
+                .ref('users/' + userId + '/habits')
+                .push(habit)
+
+            return {
+                success: true,
+                message: 'Add habit successfully !'
+            }
+
+        }
+        else return {
+            success: false,
+            message: 'Add habit failed !'
+        }
+    }
+    else return {
+        success: false,
+        message: 'Add habit failed !'
+    }
+}
+
+const getHabit = async () => {
+    let res = {}
+    if (auth().currentUser) {
+        const userId = auth().currentUser?.uid
+        if (userId) {
+            return database
+                .ref('users/' + userId + '/habits')
+                .on('value', (snapshot) => {
+                    return snapshot.val()
+                })
+
+        }
+    }
+}
+
 export {
     signUp,
-    getUser
+    getUser,
+    addHabit,
+    getHabit
 }

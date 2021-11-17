@@ -1,12 +1,14 @@
-import { Icon, Text, Header, TextInput, Progress, Switch, Guide, Button, Screen } from '@/components'
+import { Icon, Text, Header, Progress, Switch, Guide, Button, Screen } from '@/components'
 import { BASE_COLOR, BLUR_COLOR } from '@/constants/color'
 import React, { useEffect, useState } from 'react'
-import { FlatList, Pressable, SafeAreaView, StyleSheet, View } from 'react-native'
+import { FlatList, Pressable, SafeAreaView, StyleSheet, View, TextInput } from 'react-native'
 import { WEEK } from '@/helper'
 import Modal from "react-native-modal";
 import { S_HEIGHT, S_WIDTH } from '@/constants/layout'
 import DatePicker from 'react-native-date-picker'
 import moment from 'moment'
+import { addHabit } from '@/firebase'
+import { useNavigation } from '@react-navigation/core'
 
 
 const NewHabitScreen = () => {
@@ -15,9 +17,11 @@ const NewHabitScreen = () => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [notificationOn, setNotification] = useState(false);
     const [pickTimeVisible, setPickTimeVisible] = useState(false);
+    const [habitName, setHabitName] = useState<string>('')
+    const [added, setAdded] = useState(false)
     const [date, setDate] = useState(new Date())
     const DELAY = 500
-
+    const navigation = useNavigation()
     useEffect(() => {
         const arr = WEEK.map((item, index) => {
             let type = 'full'
@@ -109,6 +113,10 @@ const NewHabitScreen = () => {
         setWeek(newWeek)
     }
 
+    const addHabitName = () => {
+        setAdded(!added)
+    }
+
     const renderReminderTxt = () => {
         let text = ''
         switch (notiList.length) {
@@ -141,24 +149,42 @@ const NewHabitScreen = () => {
             </Pressable>
         )
     }
+
+    const createNewHabit = async () => {
+        console.log("createNewHabit");
+        const newHabit = {
+            name: habitName,
+            frequency: week,
+            reminder: notiList
+        }
+        const response = await addHabit(newHabit)
+        console.log('response', response);
+        navigation.goBack()
+        
+    }
     return (
         <Screen style={styles.container} bottomIcon={false}>
             <Icon name='cloud' style={styles.cloud} />
             <Header leftIcon='back' title='New Habit' />
             <View style={styles.search}>
-                <TextInput placeholder='Enter habit name' backgroundColor={BASE_COLOR.white} />
-                <View style={styles.addBtn}>
-                    <Icon name='reader' />
-                    <Icon name='smlPlus' style={styles.smlPlus} />
+                <View style={[styles.input]}>
+                    <TextInput value={added ? 'Habit Name' : habitName} editable={!added} onChangeText={setHabitName} style={styles.txtInput} placeholder={'Enter habit name'} />
+                    {added && <Text>{habitName}</Text>}
                 </View>
+                <Pressable style={styles.addBtn} onPress={addHabitName}>
+                    {
+                        !added ? <>
+                            <Icon name='reader' />
+                            <Icon name='smlPlus' style={styles.smlPlus} />
+                        </> :
+                            <Icon name='edit' />
+                    }
+
+                </Pressable>
             </View>
             <View style={styles.card}>
                 <View style={styles.headerCard}>
                     <Text style={styles.freTxt}>Habit frequency</Text>
-                    <View style={styles.row}>
-                        <Text style={styles.customTxt}>Custom </Text>
-                        <Icon name='rightArrow' />
-                    </View>
                 </View>
                 <FlatList
                     horizontal
@@ -214,7 +240,7 @@ const NewHabitScreen = () => {
                     <Button onPress={addReminder}>Add</Button>
                 </SafeAreaView>
             </Modal>
-            <Icon name='checkBtn' style={styles.checkBtn}  />
+            <Icon name='checkBtn' style={styles.checkBtn} onPress={createNewHabit}/>
         </Screen>
     )
 }
@@ -335,10 +361,41 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     checkBtn: {
-        position:'absolute',
-        left: S_WIDTH/2,
-        transform: [{translateX: -31}],
+        position: 'absolute',
+        left: S_WIDTH / 2,
+        transform: [{ translateX: -31 }],
         bottom: 52,
+    },
+    // text input
+    input: {
+        flex: 1,
+        borderRadius: 12,
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        marginBottom: 7,
+        paddingVertical: 10,
+        paddingLeft: 20,
+        backgroundColor: BASE_COLOR.white
+    },
+    miniIcon: {
+        marginLeft: 20,
+        marginRight: 20
+    },
+    txtInput: {
+        color: BASE_COLOR.brown,
+    },
+    showTxt: {
+        fontSize: 13,
+        textDecorationLine: 'underline',
+        fontWeight: '400',
+        marginRight: 20
+    },
+    line: {
+        width: 1,
+        height: 60,
+        backgroundColor: BASE_COLOR.blurYellow,
+        marginRight: 20
     }
+    // - //
 })
 export default NewHabitScreen

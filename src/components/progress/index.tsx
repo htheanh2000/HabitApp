@@ -1,16 +1,18 @@
 import { BASE_COLOR } from '@/constants/color'
 import React, {FunctionComponent} from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ViewStyle } from 'react-native'
 
 interface IProps {
-    status?: 'full' | 'half' | 'none'
+    status?: 'full' | 'half' | 'none',
+    mainStyle?: any,
+    backgroundColor?: any,
 }
 const Progress: FunctionComponent<IProps> = (props) => {
-    const {status} = props
+    const {status, backgroundColor,mainStyle} = props
     return(
-        <View style={styles.container}>
-            {status !== 'none' && <View style={styles.fullBlock}/> }
-            {status === 'half' && <View style={styles.layer}/> }
+        <View style={[styles.container, mainStyle]}>
+            {status !== 'none' && <View style={[styles.fullBlock, backgroundColor ? {backgroundColor} : {}]}/> }
+            {status === 'half' && <View style={[styles.layer]}/> }
         </View>
     )
 }

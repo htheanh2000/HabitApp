@@ -25,12 +25,14 @@ import downArrow from "@/assets/images/down-arrow.svg";
 import mentor from "@/assets/images/community.svg";
 import notiOff from "@/assets/images/noti-off.svg";
 import notiOn from "@/assets/images/noti-on.svg";
+import edit from "@/assets/images/edit.svg";
 import checkBtn from "@/assets/images/check-btn.svg";
+// jpg
 import blurSetting from "@/assets/images/Settings.jpg";
 import blurCourse from "@/assets/images/blur-course.jpg";
 import blurCommunity from "@/assets/images/blur-community.jpg";
 import blurHome from "@/assets/images/blur-home.jpg";
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import { BLUR_COLOR } from "@/constants/color";
 
 const iconTypes = {
@@ -61,6 +63,7 @@ const iconTypes = {
   notiOff,
   notiOn,
   checkBtn,
+  edit
 };
 
 const imgTypes = {
@@ -73,7 +76,7 @@ const imgTypes = {
 
 interface IProps {
   name?: IIconName,
-  img?: keyof typeof imgTypes ,
+  img?: keyof typeof imgTypes,
   size?: number,
   style?: any,
   width?: number,
@@ -81,30 +84,38 @@ interface IProps {
   onPress?: () => void
 }
 
-export type IIconName = keyof typeof iconTypes 
+// Need to optimize and clean code !!!!!
+
+export type IIconName = keyof typeof iconTypes
 
 const IconComponent: FunctionComponent<IProps> = (props) => {
   const { img, name, size, style, blurBackground, onPress, width } = props
-  const Icon = name ? iconTypes[name] : iconTypes['add'] ;
+  const Icon = name ? iconTypes[name] : iconTypes['add'];
 
-  if(img) {
-    if(size)
-    return <Image source={imgTypes[img]} width={size} height={size}/>
-    else 
-    return <Image source={imgTypes[img]} />
+  if (img) {
+    if (size)
+      return <Image source={imgTypes[img]} width={size} height={size} />
+    else
+      return <Image source={imgTypes[img]} />
   }
   else if (width)
-    return <Icon width={width} style={style}/>;
+    return <Icon width={width} style={style} />;
   else if (size)
-    return <Icon width={size} height={size} style={style}/>;
+    return <Icon width={size} height={size} style={style} />;
   else
-    return (
-      <Pressable style={[style , blurBackground && styles.container]} onPress={onPress}>
+    if (onPress) {
+      return (
+        <Pressable style={[style, blurBackground && styles.container]} onPress={onPress}>
+          <Icon />
+        </Pressable>
+      )
+    }
+    else return (
+      <View style={[style, blurBackground && styles.container]}>
         <Icon />
-      </Pressable>
+      </View>
     )
 
-  
 };
 
 
@@ -119,7 +130,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     justifyContent: 'center',
-    alignItems:'center'
+    alignItems: 'center'
   }
 })
 
