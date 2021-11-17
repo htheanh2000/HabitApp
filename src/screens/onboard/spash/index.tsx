@@ -17,7 +17,7 @@ const SplashScreen = () => {
             navigation.navigate('intro' as never)
         }
         else {
-            navigation.navigate('home-tab' as never)
+            navigation.navigate('tab' as never)
         }
         
     }

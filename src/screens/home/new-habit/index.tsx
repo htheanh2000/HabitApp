@@ -163,8 +163,7 @@ const NewHabitScreen = () => {
         
     }
     return (
-        <Screen style={styles.container} bottomIcon={false}>
-            <Icon name='cloud' style={styles.cloud} />
+        <Screen bottomIcon={false}>
             <Header leftIcon='back' title='New Habit' />
             <View style={styles.search}>
                 <View style={[styles.input]}>

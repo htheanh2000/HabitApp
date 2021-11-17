@@ -6,13 +6,14 @@ interface IProps {
     color?: string
     fontSize?: number
     fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | 'bold' | 'normal'
-    style?: TextStyle
-    type?: 'small' | 'normal'
+    style?: TextStyle | TextStyle[]
+    type?: 'small' | 'normal',
+    numberOfLines?: number,
     onPress?: () => void
 }
 
 const CustomText: FunctionComponent<IProps> = (props) => {
-    const { children, color, fontSize, fontWeight, style, type, onPress } = props
+    const { children, color, fontSize, fontWeight, style, type, onPress, numberOfLines } = props
 
 
     const getStyleByType = (): TextStyle => {
@@ -37,10 +38,10 @@ const CustomText: FunctionComponent<IProps> = (props) => {
         ...typeStyle,
         ...style,
     }
-    if(!onPress) return <Text style={[textStyle]}>{children}</Text>
+    if (!onPress) return <Text numberOfLines={numberOfLines} style={[textStyle, numberOfLines ? { width: 200 } : {}]}>{children}</Text>
     else return (
         <Pressable onPress={onPress}>
-            <Text style={[textStyle]}>{children}</Text>
+            <Text numberOfLines={numberOfLines} style={[textStyle, numberOfLines ? { width: 200 } : {}]}>{children}</Text>
         </Pressable>
     )
 }

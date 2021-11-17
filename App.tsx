@@ -61,16 +61,16 @@ const App = () => {
   const renderIcon = (label: string, isFocused: boolean, onPress: any) => {
     const size = 40
     switch (label) {
-      case 'home':
-        return isFocused ? <Icon name='home' size={size} /> : <Icon img = 'blurHome' size={size} />
-      case 'course':
-        return isFocused ? <Icon name='course' size={size} /> : <Icon img = 'blurCourse' size={size} />
+      case 'home-tab':
+        return isFocused ? <Icon name='home' size={size} /> : <Icon img='blurHome' size={size} />
+      case 'course-tab':
+        return isFocused ? <Icon name='course' size={size} /> : <Icon img='blurCourse' size={size} />
       case 'community':
-        return isFocused ? <Icon name='community' size={size} /> : <Icon img = 'blurCommunity' size={size} />
+        return isFocused ? <Icon name='community' size={size} /> : <Icon img='blurCommunity' size={size} />
       case 'setting':
-        return isFocused ? <Icon name='setting' size={size} /> : <Icon img = 'blurSetting' size={size} />
+        return isFocused ? <Icon name='setting' size={size} /> : <Icon img='blurSetting' size={size} />
       default:
-        return  <View/>
+        return <View />
     }
   }
 
@@ -83,11 +83,20 @@ const App = () => {
     );
   }
 
+  const courseStack = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }} >
+        <Tab.Screen name="course" component={Screens.CourseScreen} />
+        <Tab.Screen name="course-detail" component={Screens.CourseDetailScreen} />
+      </Stack.Navigator>
+    );
+  }
+
   const tabStack = () => {
     return (
       <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={props => <MyTabBar {...props} />} >
-        <Tab.Screen name="home" component={homeStack} />
-        <Tab.Screen name="course" component={Screens.CourseScreen} />
+        <Tab.Screen name="home-tab" component={homeStack} />
+        <Tab.Screen name="course-tab" component={courseStack} />
         <Tab.Screen name="fake-screen" component={Screen} />
         <Tab.Screen name="community" component={Screens.CommunityScreen} />
         <Tab.Screen name="setting" component={Screens.SettingScreen} />
@@ -103,7 +112,7 @@ const App = () => {
         <Stack.Screen name="sign-in" component={Screens.SignInScreen} />
         <Stack.Screen name="sign-up" component={Screens.SignUpScreen} />
         <Stack.Screen name="reset-password" component={Screens.ResetPasswordScreen} />
-        <Stack.Screen name="home-tab" component={tabStack} />
+        <Stack.Screen name="tab" component={tabStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -133,6 +142,7 @@ const styles = StyleSheet.create({
   tabBg: {
     position: 'absolute',
     left: 0,
+    bottom: -3,
     width: S_WIDTH
   },
   plusBtn: {

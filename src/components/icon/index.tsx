@@ -27,6 +27,12 @@ import notiOff from "@/assets/images/noti-off.svg";
 import notiOn from "@/assets/images/noti-on.svg";
 import edit from "@/assets/images/edit.svg";
 import checkBtn from "@/assets/images/check-btn.svg";
+import search from "@/assets/images/search.svg";
+import coursesBg from "@/assets/images/courses-bg.svg";
+import dropdown from "@/assets/images/downArrow.svg";
+import mark from "@/assets/images/mark.svg";
+import play from "@/assets/images/play.svg";
+import locked from "@/assets/images/locked.svg";
 // jpg
 import blurSetting from "@/assets/images/Settings.jpg";
 import blurCourse from "@/assets/images/blur-course.jpg";
@@ -63,7 +69,13 @@ const iconTypes = {
   notiOff,
   notiOn,
   checkBtn,
-  edit
+  edit,
+  search,
+  coursesBg,
+  dropdown,
+  mark,
+  play,
+  locked
 };
 
 const imgTypes = {

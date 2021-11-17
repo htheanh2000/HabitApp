@@ -53,8 +53,6 @@ const HomeScreen = () => {
     }
     return (
         <Screen>
-            <Icon name='cloud' style={styles.cloud} />
-            <View style={styles.container}>
                 <Header leftIcon='menu' rightIcon='avatar' title='Homepage' />
                 <View style={styles.card}>
                     <Text style={styles.title}>We first make out habits, and then our habits make us.</Text>
@@ -90,7 +88,6 @@ const HomeScreen = () => {
                         })
                     }
                 </View>
-            </View>
         </Screen>
     )
 }

@@ -26,7 +26,7 @@ const Header: FunctionComponent<IProps>=(props)=> {
     return(
         <View style={styles.container}>
             {leftIcon ? <Icon name={leftIcon} blurBackground onPress={onPressLeft}/> : <View style={styles.emptyView}/>}
-            <Text style={styles.title}>{title}</Text>
+            <Text numberOfLines={1} style={styles.title}>{title}</Text>
             {rightIcon ? <Icon name={rightIcon} blurBackground/> : <View style={styles.emptyView}/>}
         </View>
     )
