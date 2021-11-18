@@ -49,6 +49,9 @@ import clock from "@/assets/images/clock.svg";
 import flag from "@/assets/images/flag.svg";
 import billingMethod from "@/assets/images/billing-method.svg";
 import longStreak from "@/assets/images/long-streak.svg";
+import subscription from "@/assets/images/subscription.svg";
+import tick from "@/assets/images/tick.svg";
+import secure from "@/assets/images/secure.svg";
 // jpg
 import blurSetting from "@/assets/images/Settings.jpg";
 import blurCourse from "@/assets/images/blur-course.jpg";
@@ -107,7 +110,10 @@ const iconTypes = {
   clock,
   flag,
   billingMethod,
-  longStreak
+  longStreak,
+  subscription,
+  tick,
+  secure
 };
 
 const imgTypes = {
