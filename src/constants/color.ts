@@ -20,5 +20,7 @@ export const BLUR_COLOR = {
     violet10: '#ddd6dd',
     yellowSwitch20: '#FDA75850',
     yellowSwitch: '#FDA758',
-    blurViolet: '#C8C1C8'
+    blurViolet: '#C8C1C8',
+    blurRed: '#fddedc',
+    blurYellow: '#FFF3E9',
 }

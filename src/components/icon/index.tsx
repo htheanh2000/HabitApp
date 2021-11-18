@@ -44,6 +44,11 @@ import contact from "@/assets/images/contact.svg";
 import feedback from "@/assets/images/feedback.svg";
 import policy from "@/assets/images/policy.svg";
 import about from "@/assets/images/about.svg";
+import pen from "@/assets/images/pen.svg";
+import clock from "@/assets/images/clock.svg";
+import flag from "@/assets/images/flag.svg";
+import billingMethod from "@/assets/images/billing-method.svg";
+import longStreak from "@/assets/images/long-streak.svg";
 // jpg
 import blurSetting from "@/assets/images/Settings.jpg";
 import blurCourse from "@/assets/images/blur-course.jpg";
@@ -97,7 +102,12 @@ const iconTypes = {
   contact,
   about,
   policy,
-  feedback
+  feedback,
+  pen,
+  clock,
+  flag,
+  billingMethod,
+  longStreak
 };
 
 const imgTypes = {

@@ -67,7 +67,7 @@ const App = () => {
         return isFocused ? <Icon name='course' /> : <Icon img='blurCourse' />
       case 'community':
         return isFocused ? <Icon name='community' /> : <Icon img='blurCommunity' />
-      case 'setting':
+      case 'setting-tab':
         return isFocused ? <Icon name='setting' /> : <Icon img='blurSetting' />
       default:
         return <View />
@@ -92,6 +92,16 @@ const App = () => {
     );
   }
 
+  const settingStack = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }} >
+        <Tab.Screen name="setting" component={Screens.SettingScreen} />
+        <Tab.Screen name="profile" component={Screens.ProfileScreen} />
+        <Tab.Screen name="subscription" component={Screens.SubscriptionScreen} />
+      </Stack.Navigator>
+    );
+  }
+
   const tabStack = () => {
     return (
       <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={props => <MyTabBar {...props} />} >
@@ -99,7 +109,7 @@ const App = () => {
         <Tab.Screen name="course-tab" component={courseStack} />
         <Tab.Screen name="fake-screen" component={Screen} />
         <Tab.Screen name="community" component={Screens.CommunityScreen} />
-        <Tab.Screen name="setting" component={Screens.SettingScreen} />
+        <Tab.Screen name="setting-tab" component={settingStack} />
       </Tab.Navigator>
     );
   }

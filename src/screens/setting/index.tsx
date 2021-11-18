@@ -1,11 +1,12 @@
 import { Header, Icon, Screen, Text } from '@/components'
 import { IIconName } from '@/components/icon'
 import { BASE_COLOR } from '@/constants/color'
+import { useNavigation } from '@react-navigation/core'
 import React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
 
 const SettingScreen = () => {
-
+    const navigation = useNavigation()
     const SupportCard = ({ icon, name }: { icon: IIconName, name: string }) => {
         return (
             <View style={styles.smlCard}>
@@ -35,18 +36,24 @@ const SettingScreen = () => {
         )
     }
 
+    const viewProfile = () => {
+        navigation.navigate('profile' as never)
+    }
+
     return (
         <Screen>
             <Header leftIcon='menu' title='Settings' />
             <View style={[styles.card]}>
                 <Text style={styles.title}>Check your profile</Text>
                 <Text style={styles.content}>htheanh2000@gmail.com</Text>
-                <View style={styles.btn}>
+                <Pressable style={styles.btn} onPress={viewProfile}>
                     <Text>View</Text>
-                </View>
+                </Pressable>
                 <Icon name='homepage' style={styles.cardImg} />
             </View>
-            <ScrollView>
+            <ScrollView
+                showsVerticalScrollIndicator = {false}
+            >
 
                 <Text style={styles.section}>General</Text>
                 <GeneralCard icon='notification' title='Notifications' subTitle='Customize notifications' />

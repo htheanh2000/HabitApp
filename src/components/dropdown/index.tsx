@@ -1,18 +1,19 @@
 import { BASE_COLOR } from '@/constants/color'
 import React, {FunctionComponent} from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ViewStyle } from 'react-native'
 import Icon  from '../icon'
 import Text from '../text'
 
 interface IProps {
     title?: string,
-    width?: number
+    width?: number,
+    style?: ViewStyle | ViewStyle[]
 }
 
 const Dropdown:FunctionComponent<IProps> = (props) => {
-    const {title, width} = props
+    const {title, width,style} = props
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,style]}>
             <Text style={{...styles.text, width}}>{title}</Text>
             <Icon name='dropdown' style={styles.icon}/>
         </View>
