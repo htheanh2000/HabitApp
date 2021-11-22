@@ -1,11 +1,11 @@
 import { Header, Icon, Progress, Screen, Text } from '@/components'
 import React, { useEffect, useState } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, Pressable, StyleSheet, View } from 'react-native'
 import { getWeekList } from '@/helper'
 import { BASE_COLOR } from '@/constants/color'
-import { getHabit } from '@/firebase'
 import auth from '@react-native-firebase/auth';
 import { firebase } from '@react-native-firebase/database';
+import { useNavigation } from '@react-navigation/core'
 const database = firebase
     .app()
     .database('https://habitapp-31c85-default-rtdb.asia-southeast1.firebasedatabase.app/')
@@ -19,12 +19,9 @@ const COLORS = [
 const HomeScreen = () => {
     const [weeks, setWeek] = useState<any[]>()
     const [habits, setHabits] = useState<any>([])
+    const navigation = useNavigation()
     useEffect(() => {
         setWeek(getWeekList())
-        getData()
-    }, [])
-
-    const getData = async () => {
         if (auth().currentUser) {
             const userId = auth().currentUser?.uid
             if (userId) {
@@ -39,7 +36,7 @@ const HomeScreen = () => {
                 return () => database.ref('users/' + userId + '/habits').off('value', onValueChange);
             }
         }
-    }
+    }, [])
 
     const renderItem = (item: any) => {
         const { date, day, today } = item
@@ -51,43 +48,47 @@ const HomeScreen = () => {
             </View>
         )
     }
+
+    const onPress = () => {
+        navigation.navigate('analyst' as never)
+    }
     return (
         <Screen>
-                <Header leftIcon='menu' rightIcon='avatar' title='Homepage' />
-                <View style={styles.card}>
-                    <Text style={styles.title}>We first make out habits, and then our habits make us.</Text>
-                    <Text style={styles.author}>- ANONYMOUS</Text>
-                    <Icon name='homepage' style={styles.cardImg} />
-                </View>
-                <View style={styles.habitsHeader}>
-                    <Text style={styles.habitsTxt}>HABITS</Text>
-                    <FlatList
-                        showsHorizontalScrollIndicator={false}
-                        horizontal
-                        data={weeks}
-                        renderItem={({ item }) => renderItem(item)}
-                        keyExtractor={item => item.day}
-                    />
-                </View>
-                <View >
-                    {
-                        habits.map((habit: any, id: number) => {
-                            const { name, frequency } = habit
-                            return (
-                                <View key={name} style={[styles.habitRow]}>
-                                    <Text style={styles.habitsTxt}>{name}</Text>
-                                    <FlatList
-                                        showsHorizontalScrollIndicator={false}
-                                        horizontal
-                                        data={frequency}
-                                        keyExtractor={item => item.id + item.name}
-                                        renderItem={({ item }) => <Progress mainStyle={[styles.progress]} backgroundColor={COLORS[id % COLORS.length]} key={item.name + item.id} status={item.type} />}
-                                    />
-                                </View>
-                            )
-                        })
-                    }
-                </View>
+            <Header leftIcon='menu' rightIcon='avatar' title='Homepage' />
+            <View style={styles.card}>
+                <Text style={styles.title}>We first make out habits, and then our habits make us.</Text>
+                <Text style={styles.author}>- ANONYMOUS</Text>
+                <Icon name='homepage' style={styles.cardImg} />
+            </View>
+            <View style={styles.habitsHeader}>
+                <Text style={styles.habitsTxt}>HABITS</Text>
+                <FlatList
+                    showsHorizontalScrollIndicator={false}
+                    horizontal
+                    data={weeks}
+                    renderItem={({ item }) => renderItem(item)}
+                    keyExtractor={item => item.day}
+                />
+            </View>
+            <View >
+                {
+                    habits.map((habit: any, id: number) => {
+                        const { name, frequency } = habit
+                        return (
+                            <Pressable key={name} style={[styles.habitRow]} onPress={onPress}>
+                                <Text style={styles.habitsTxt}>{name}</Text>
+                                <FlatList
+                                    showsHorizontalScrollIndicator={false}
+                                    horizontal
+                                    data={frequency}
+                                    keyExtractor={item => item.id + item.name}
+                                    renderItem={({ item }) => <Progress mainStyle={[styles.progress]} backgroundColor={COLORS[id % COLORS.length]} key={item.name + item.id} status={item.type} />}
+                                />
+                            </Pressable>
+                        )
+                    })
+                }
+            </View>
         </Screen>
     )
 }
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 16,
         margin: 10,
+        paddingLeft: 10,
         width: 100,
     },
     dateBlock: {

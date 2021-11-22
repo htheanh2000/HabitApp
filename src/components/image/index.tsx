@@ -12,6 +12,8 @@ import ava1 from "@/assets/images/avatar/ava-1.png";
 import ava2 from "@/assets/images/avatar/ava-2.png";
 import ava3 from "@/assets/images/avatar/ava-3.png";
 import ava4 from "@/assets/images/avatar/ava-4.png";
+import smlCamp from "@/assets/images/sml-camp.png";
+import camp from "@/assets/images/camp1.png";
 import { Image, ImageStyle } from "react-native";
 
 const imgTypes = {
@@ -25,7 +27,9 @@ const imgTypes = {
   ava1,
   ava2,
   ava3,
-  ava4
+  ava4,
+  smlCamp,
+  camp
 }
 
 interface IProps {

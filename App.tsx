@@ -79,6 +79,8 @@ const App = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }} >
         <Stack.Screen name="homepage" component={Screens.HomeScreen} />
         <Tab.Screen name="new-habit" component={Screens.NewHabitScreen} />
+        <Tab.Screen name="analyst" component={Screens.AnalystScreen} />
+        <Tab.Screen name="dashboard" component={Screens.DashboardScreen} />
       </Stack.Navigator>
     );
   }

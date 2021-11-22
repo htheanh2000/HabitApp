@@ -52,6 +52,13 @@ import longStreak from "@/assets/images/long-streak.svg";
 import subscription from "@/assets/images/subscription.svg";
 import tick from "@/assets/images/tick.svg";
 import secure from "@/assets/images/secure.svg";
+import camp from "@/assets/images/camp.svg";
+import belt from "@/assets/images/belt.svg";
+import streak from "@/assets/images/streak.svg";
+import light from "@/assets/images/light.svg";
+import completion from "@/assets/images/completion.svg";
+import average from "@/assets/images/average.svg";
+import close from "@/assets/images/close.svg";
 // jpg
 import blurSetting from "@/assets/images/Settings.jpg";
 import blurCourse from "@/assets/images/blur-course.jpg";
@@ -113,7 +120,14 @@ const iconTypes = {
   longStreak,
   subscription,
   tick,
-  secure
+  secure,
+  camp,
+  belt,
+  streak,
+  light,
+  completion,
+  average,
+  close
 };
 
 const imgTypes = {

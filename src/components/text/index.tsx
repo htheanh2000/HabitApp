@@ -4,8 +4,13 @@ import { BASE_COLOR } from '@/constants/color'
 interface IProps {
     status?: 'NORMAL' | 'DEACTIVE' | string
     color?: string
-    fontSize?: number
-    fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | 'bold' | 'normal'
+    size?: number
+    weight?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+    mleft?: number,
+    mright?: number,
+    mtop?: number,
+    mbottom?: number,
+    align?: 'center' | 'left' | 'right',
     style?: TextStyle | TextStyle[]
     type?: 'small' | 'normal',
     numberOfLines?: number,
@@ -13,7 +18,7 @@ interface IProps {
 }
 
 const CustomText: FunctionComponent<IProps> = (props) => {
-    const { children, color, fontSize, fontWeight, style, type, onPress, numberOfLines } = props
+    const { children, color, size, weight, style,align, type, onPress, numberOfLines, mleft, mright, mtop, mbottom } = props
 
 
     const getStyleByType = (): TextStyle => {
@@ -33,8 +38,13 @@ const CustomText: FunctionComponent<IProps> = (props) => {
 
     const textStyle: TextStyle = {
         color: color || BASE_COLOR.brown,
-        fontWeight: fontWeight,
-        fontSize,
+        fontWeight: `${weight || 6}00`,
+        marginLeft: mleft,
+        marginTop: mtop,
+        textAlign: align,
+        marginBottom: mbottom,
+        marginRight: mright,
+        fontSize: size,
         ...typeStyle,
         ...style,
     }
@@ -48,10 +58,13 @@ const CustomText: FunctionComponent<IProps> = (props) => {
 
 CustomText.defaultProps = {
     status: 'NORMAL',
-    fontSize: 16,
-    fontWeight: '600',
+    weight: 6,
     color: BASE_COLOR.brown,
-    type: 'normal'
+    type: 'normal',
+    mleft: 0,
+    mright: 0,
+    mbottom: 0,
+    mtop: 0
 }
 
 export default CustomText

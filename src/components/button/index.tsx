@@ -1,16 +1,17 @@
 import { BASE_COLOR } from '@/constants/color'
 import { S_WIDTH } from '@/constants/layout'
 import React, {FunctionComponent} from 'react'
-import {  Pressable, StyleSheet, View } from 'react-native'
+import {  Pressable, StyleSheet, View, ViewStyle } from 'react-native'
 import Text from '../text'
 
 interface IProps {
     onPress?: () => void
+    style?: ViewStyle
 }
 const Button:FunctionComponent<IProps> = (props) => {
-    const {children, onPress} = props
+    const {children, onPress,style} = props
     return (
-        <Pressable style={styles.container} onPress={onPress}>
+        <Pressable style={[styles.container,style]} onPress={onPress}>
             <Text onPress={onPress}>{children}</Text>
         </Pressable>
     )
@@ -18,7 +19,6 @@ const Button:FunctionComponent<IProps> = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         width: S_WIDTH-20,
         height: 60,
         backgroundColor: BASE_COLOR.yellow,

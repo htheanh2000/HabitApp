@@ -6,13 +6,14 @@ interface IProps {
     status?: 'full' | 'half' | 'none',
     mainStyle?: any,
     backgroundColor?: any,
+    layoutColor?: any
 }
 const Progress: FunctionComponent<IProps> = (props) => {
-    const {status, backgroundColor,mainStyle} = props
+    const {status, backgroundColor,mainStyle, layoutColor} = props
     return(
         <View style={[styles.container, mainStyle]}>
             {status !== 'none' && <View style={[styles.fullBlock, backgroundColor ? {backgroundColor} : {}]}/> }
-            {status === 'half' && <View style={[styles.layer]}/> }
+            {status === 'half' && <View style={[styles.layer,layoutColor ? {backgroundColor: layoutColor} : {}]}/> }
         </View>
     )
 }
