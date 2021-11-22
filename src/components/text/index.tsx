@@ -39,11 +39,7 @@ const CustomText: FunctionComponent<IProps> = (props) => {
     const textStyle: TextStyle = {
         color: color || BASE_COLOR.brown,
         fontWeight: `${weight || 6}00`,
-        marginLeft: mleft,
-        marginTop: mtop,
         textAlign: align,
-        marginBottom: mbottom,
-        marginRight: mright,
         fontSize: size,
         ...typeStyle,
         ...style,
@@ -59,6 +55,7 @@ const CustomText: FunctionComponent<IProps> = (props) => {
 CustomText.defaultProps = {
     status: 'NORMAL',
     weight: 6,
+    size:16,
     color: BASE_COLOR.brown,
     type: 'normal',
     mleft: 0,

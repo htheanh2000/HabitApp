@@ -1,6 +1,7 @@
 import { Header, Icon, Screen, Text } from '@/components'
 import { IIconName } from '@/components/icon'
 import { BASE_COLOR } from '@/constants/color'
+import { logout } from '@/firebase'
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
@@ -21,9 +22,9 @@ const SettingScreen = () => {
         )
     }
 
-    const GeneralCard = ({ icon, title, subTitle }: { icon: IIconName, title: string, subTitle: string }) => {
+    const GeneralCard = ({ icon, title, subTitle, onPress }: { icon: IIconName, title: string, subTitle: string, onPress?: () => void }) => {
         return (
-            <View style={styles.smlCard}>
+            <Pressable style={styles.smlCard} onPress={onPress}>
                 <View style={styles.row}>
                     <Icon name={icon} />
                     <View style={styles.contentView}>
@@ -32,7 +33,7 @@ const SettingScreen = () => {
                     </View>
                 </View>
                 <Icon name='viRiArrow' style={styles.rightArrow} />
-            </View>
+            </Pressable>
         )
     }
 
@@ -64,6 +65,9 @@ const SettingScreen = () => {
                 <SupportCard name='Feedback' icon='feedback' />
                 <SupportCard name='Privacy Policy' icon='policy' />
                 <SupportCard name='About' icon='about' />
+
+                <Text style={styles.section}>Log out</Text>
+                <GeneralCard icon='notification' title='Log out' subTitle='Log out this account' onPress={()=> logout()}/>
             </ScrollView>
         </Screen>
     )
@@ -115,7 +119,7 @@ const styles = StyleSheet.create(({
         fontWeight: '300'
     },
     section: {
-        marginVertical: 15,
+        marginBottom: 15,
         fontWeight: '400'
     },
     contentView: {

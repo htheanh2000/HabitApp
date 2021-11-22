@@ -9,7 +9,8 @@ interface IProps {
     rightTxt?: string,
     placeholder?: string,
     backgroundColor?: string,
-    showLine?: boolean
+    showLine?: boolean,
+    style?: any
 }
 
 interface IRef {
@@ -17,7 +18,7 @@ interface IRef {
 }
 
 const Input = forwardRef<IRef, IProps>((props, ref) => {
-    const { icon, rightTxt, placeholder, backgroundColor, showLine } = props
+    const { icon, rightTxt,style, placeholder, backgroundColor, showLine } = props
     const [value, setValue] = useState<string>('')
     const getValue = () => {
        return  value
@@ -30,7 +31,7 @@ const Input = forwardRef<IRef, IProps>((props, ref) => {
         [value],
     )
     return (
-        <View style={[styles.input, { marginBottom: 7, backgroundColor: backgroundColor }]}>
+        <View style={[styles.input, { marginBottom: 7, backgroundColor: backgroundColor },style]}>
             {icon ? <Icon name={icon} style={styles.miniIcon} /> : <View style={{ marginLeft: 20 }} />}
             {showLine && <View style={styles.line} />}
             <TextInput value={value} onChangeText={setValue} style={styles.txtInput} placeholder={placeholder} />
@@ -48,7 +49,7 @@ Input.defaultProps = {
 const styles = StyleSheet.create({
     input: {
         height: 60,
-        flex: 1,
+        width: S_WIDTH-20,
         borderRadius: 12,
         flexDirection: 'row',
         alignItems: 'center',

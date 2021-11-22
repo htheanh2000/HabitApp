@@ -46,7 +46,7 @@ const SignInScreen = () => {
                 <View style={styles.modal}>
                     <Text style={styles.emailText}>Log in with email</Text>
                     <View style={styles.line} />
-                    <TextInput  icon='mail' placeholder='Email' />
+                    <TextInput icon='mail' placeholder='Email' />
                     <TextInput icon='lock' placeholder='Password' rightTxt='Show' /> 
                     <Button>Login</Button>
                     <Text style={{ ...styles.smlTxt, marginTop: 10, textDecorationLine: 'underline' }} onPress={forgotPassword}>Forgot Password ?</Text>
@@ -123,7 +123,8 @@ const styles = StyleSheet.create({
     },
     emailText: {
         margin: 20,
-        fontWeight: '400'
+        fontWeight: '400',
+        fontSize: 16
     },
     line: {
         width: S_WIDTH,

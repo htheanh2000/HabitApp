@@ -20,8 +20,8 @@ const ResetScreen = () => {
             <Icon name='resetPassword' />
             <View style={styles.modal}>
                     <Text type='small' style={styles.content}>Enter your registered email below to receive password reset instruction</Text>
-                    <TextInput backgroundColor={BASE_COLOR.blurYellow} placeholder='Email'/>
-                    <Button>Send reset link</Button>
+                    <TextInput style={{width: '100%'}} backgroundColor={BASE_COLOR.blurYellow} placeholder='Email'/>
+                    <Button style={{width: '100%'}}>Send reset link</Button>
             </View>
 
             <View style={styles.rememberTxt}>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     modal: {
         width: S_WIDTH-30,
-        padding: 20,
+        padding: 10,
         backgroundColor: BASE_COLOR.white,
         borderRadius: 12,
         alignItems: 'center'

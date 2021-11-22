@@ -75,6 +75,11 @@ const getUser = () => {
     else return null
 }
 
+const logout = () => {
+    auth()
+  .signOut()
+}
+
 const addHabit = async (habit: any) => {
     if (auth().currentUser) {
         const userId = auth().currentUser?.uid
@@ -119,5 +124,6 @@ export {
     signUp,
     getUser,
     addHabit,
-    getHabit
+    getHabit,
+    logout
 }

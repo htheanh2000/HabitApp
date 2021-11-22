@@ -6,6 +6,7 @@ import { View } from 'react-native'
 import { S_HEIGHT, S_WIDTH } from '@/constants/layout'
 import { BASE_COLOR } from '@/constants/color'
 import { useNavigation } from '@react-navigation/core'
+import { transform } from '@babel/core'
 
 interface IRef {
     next: () => void
@@ -33,7 +34,7 @@ const IntroScreen = () => {
         <SafeAreaView style={styles.container}>
             <View style={styles.contentView}>
                 <Text style={styles.title}>{title[index].text}</Text>
-                <View style={styles.image}>
+                <View style={[styles.image, index === 0 && {transform: [{ rotateX: '180deg' }]}]}>
                     {renderImage(title[index].image)}
                 </View>
                 {
@@ -91,7 +92,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     image: {
-        height: S_HEIGHT / 2
+        marginTop: 20,
+        height: S_HEIGHT / 2,
     }
 
 })
