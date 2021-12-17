@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1039867201405",
+    "firebase_url": "https://habitapp-31c85-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "habitapp-31c85",
+    "storage_bucket": "habitapp-31c85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039867201405:android:88a20dcb819f749a676e14",
+        "android_client_info": {
+          "package_name": "com.habitapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039867201405-m84803nds48hlp5ejb3e4nv5rj7ehp29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIspY0ng-zfhwgOrYGGDQ3zE0cIDUCbFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039867201405-m84803nds48hlp5ejb3e4nv5rj7ehp29.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1039867201405-qq0b5r7oioav8frf5mvhgpen6pk4bduf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.habitapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

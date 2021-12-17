@@ -8,11 +8,12 @@ const getWeekList = () => {
     const arr = []
     const dayNow = date.getDay() 
     const dateNow = date.getDate()
+    
     for (let index = 0; index <= 6; index++) {
-        const date = dateNow - (dayNow - index - 1)
+        const date = moment().add(index-dayNow, 'days').date()
         arr.push({
             day: WEEK[index],
-            date,
+            date: date,
             today: date === dateNow 
         })
     }

@@ -41,6 +41,11 @@ const SettingScreen = () => {
         navigation.navigate('profile' as never)
     }
 
+    const gologout =()=> {
+         logout()
+        navigation.navigate('sign-in' as never)
+    }
+
     return (
         <Screen>
             <Header leftIcon='menu' title='Settings' />
@@ -67,7 +72,7 @@ const SettingScreen = () => {
                 <SupportCard name='About' icon='about' />
 
                 <Text style={styles.section}>Log out</Text>
-                <GeneralCard icon='notification' title='Log out' subTitle='Log out this account' onPress={()=> logout()}/>
+                <GeneralCard icon='notification' title='Log out' subTitle='Log out this account' onPress={()=> gologout()}/>
             </ScrollView>
         </Screen>
     )

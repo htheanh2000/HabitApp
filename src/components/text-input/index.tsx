@@ -10,7 +10,9 @@ interface IProps {
     placeholder?: string,
     backgroundColor?: string,
     showLine?: boolean,
-    style?: any
+    style?: any,
+    onRightTxtPress?: () => void
+    secureTextEntry?: boolean
 }
 
 interface IRef {
@@ -18,7 +20,7 @@ interface IRef {
 }
 
 const Input = forwardRef<IRef, IProps>((props, ref) => {
-    const { icon, rightTxt,style, placeholder, backgroundColor, showLine } = props
+    const { icon, rightTxt,style, placeholder, backgroundColor, showLine,secureTextEntry ,onRightTxtPress} = props
     const [value, setValue] = useState<string>('')
     const getValue = () => {
        return  value
@@ -34,15 +36,16 @@ const Input = forwardRef<IRef, IProps>((props, ref) => {
         <View style={[styles.input, { marginBottom: 7, backgroundColor: backgroundColor },style]}>
             {icon ? <Icon name={icon} style={styles.miniIcon} /> : <View style={{ marginLeft: 20 }} />}
             {showLine && <View style={styles.line} />}
-            <TextInput value={value} onChangeText={setValue} style={styles.txtInput} placeholder={placeholder} />
-            {rightTxt && <Text style={styles.showTxt}>{rightTxt}</Text>}
+            <TextInput secureTextEntry={secureTextEntry} value={value} onChangeText={setValue} style={styles.txtInput} placeholder={placeholder} />
+            {rightTxt && <Text onPress={onRightTxtPress} style={styles.showTxt}>{rightTxt}</Text>}
         </View>
     )
 })
 
 Input.defaultProps = {
     placeholder: '',
-    backgroundColor: BASE_COLOR.blurYellow
+    backgroundColor: BASE_COLOR.blurYellow,
+    secureTextEntry: false
 }
 
 

@@ -1,21 +1,40 @@
 import { Button, Icon, Text, TextInput } from '@/components'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Pressable, StyleSheet, View } from 'react-native'
 import OnboardSvg from '@/assets/images/onboard.svg'
 import { S_HEIGHT, S_WIDTH } from '@/constants/layout'
 import LinearGradient from 'react-native-linear-gradient';
 import { BASE_COLOR } from '@/constants/color'
 import { useNavigation } from '@react-navigation/core'
+import { signIn } from '@/firebase'
+
+interface InputRef {
+    getValue: () => string
+}
 
 const SignInScreen = () => {
     const navigation = useNavigation()
-    const signUp = () => {
+    const [showPassword, setShowPassword] = useState(false)
+    const goSignUp = () => {
         navigation.navigate('sign-up' as never)
     }
     const forgotPassword = () => {
         navigation.navigate('reset-password' as never)
     }
 
+    const logIn =async ()=> {
+        const email = emailRef.current?.getValue()  || ''
+        const password = passwordRef.current?.getValue()  || ''
+        const response = await signIn(email,password)
+        console.log(response);
+        
+        if(response.success) {
+            navigation.navigate('tab' as never)
+        }
+    }
+
+    const emailRef  = useRef<InputRef>(null)
+    const passwordRef  = useRef<InputRef>(null)
     // const 
     return (
         <View style={styles.container}>
@@ -46,14 +65,16 @@ const SignInScreen = () => {
                 <View style={styles.modal}>
                     <Text style={styles.emailText}>Log in with email</Text>
                     <View style={styles.line} />
-                    <TextInput icon='mail' placeholder='Email' />
-                    <TextInput icon='lock' placeholder='Password' rightTxt='Show' /> 
-                    <Button>Login</Button>
+                    <TextInput ref={emailRef} icon='mail' placeholder='Email' />
+                    <TextInput ref={passwordRef} icon='lock' placeholder='Password' 
+                    onRightTxtPress={()=> setShowPassword(!showPassword)}
+                    secureTextEntry={!showPassword} rightTxt={showPassword? 'Hidden' : 'Show'} /> 
+                    <Button onPress={()=>logIn()}>Login</Button>
                     <Text style={{ ...styles.smlTxt, marginTop: 10, textDecorationLine: 'underline' }} onPress={forgotPassword}>Forgot Password ?</Text>
 
                     <View style={styles.signUpTxt}>
                         <Text style={styles.smlTxt}>Don't have an account? </Text>
-                        <Text style={{ ...styles.smlTxt, fontWeight: '600' }} onPress={signUp}>Sign Up</Text>
+                        <Text style={{ ...styles.smlTxt, fontWeight: '600' }} onPress={goSignUp}>Sign Up</Text>
                     </View>
                 </View>
             </View>

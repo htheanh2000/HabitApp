@@ -8,6 +8,9 @@ import { BASE_COLOR, BLUR_COLOR } from '@/constants/color';
 import { Pressable, StyleSheet, TouchableOpacity, TouchableOpacityBase, TouchableWithoutFeedback, View } from 'react-native';
 import { Icon, Screen } from '@/components';
 import { S_WIDTH } from '@/constants/layout';
+import { Provider } from "react-redux";
+import { store } from "@/store";
+
 const App = () => {
 
   const Stack = createNativeStackNavigator();
@@ -117,16 +120,18 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="spash" component={Screens.SpashScreen} />
-        <Stack.Screen name="intro" component={Screens.IntroScreen} />
-        <Stack.Screen name="sign-in" component={Screens.SignInScreen} />
-        <Stack.Screen name="sign-up" component={Screens.SignUpScreen} />
-        <Stack.Screen name="reset-password" component={Screens.ResetPasswordScreen} />
-        <Stack.Screen name="tab" component={tabStack} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="spash" component={Screens.SpashScreen} />
+          <Stack.Screen name="intro" component={Screens.IntroScreen} />
+          <Stack.Screen name="sign-in" component={Screens.SignInScreen} />
+          <Stack.Screen name="sign-up" component={Screens.SignUpScreen} />
+          <Stack.Screen name="reset-password" component={Screens.ResetPasswordScreen} />
+          <Stack.Screen name="tab" component={tabStack} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    // </Provider>
   );
 };
 

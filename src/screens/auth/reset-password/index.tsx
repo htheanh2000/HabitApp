@@ -1,8 +1,9 @@
 import { Button, Icon, Text, TextInput } from '@/components'
-import { BASE_COLOR, BLUR_COLOR } from '@/constants/color'
+import { BASE_COLOR } from '@/constants/color'
 import { S_WIDTH } from '@/constants/layout'
+import { resetPassword } from '@/firebase'
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { createRef } from 'react'
 import { SafeAreaView, StyleSheet, View } from 'react-native'
 
 const ResetScreen = () => {
@@ -13,6 +14,16 @@ const ResetScreen = () => {
     const signIn = () => {
         navigation.navigate('sign-in' as never)
     }
+
+    const onResetPwd =()=> {
+        const email = emailRef.current?.getValue() || ''
+        resetPassword(email)
+    }
+    interface IRef {
+        getValue: () => string 
+    }
+
+    const emailRef = createRef<IRef>()
     return(
         <SafeAreaView style={styles.container}>
             <Icon name='back' blurBackground style={styles.backIcon} onPress={goBack}/>
@@ -20,8 +31,8 @@ const ResetScreen = () => {
             <Icon name='resetPassword' />
             <View style={styles.modal}>
                     <Text type='small' style={styles.content}>Enter your registered email below to receive password reset instruction</Text>
-                    <TextInput style={{width: '100%'}} backgroundColor={BASE_COLOR.blurYellow} placeholder='Email'/>
-                    <Button style={{width: '100%'}}>Send reset link</Button>
+                    <TextInput ref={emailRef} style={{width: '100%'}} backgroundColor={BASE_COLOR.blurYellow} placeholder='Email'/>
+                    <Button style={{width: '100%'}} onPress={onResetPwd}>Send reset link</Button>
             </View>
 
             <View style={styles.rememberTxt}>

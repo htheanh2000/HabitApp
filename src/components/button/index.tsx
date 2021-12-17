@@ -1,7 +1,7 @@
 import { BASE_COLOR } from '@/constants/color'
 import { S_WIDTH } from '@/constants/layout'
 import React, {FunctionComponent} from 'react'
-import {  Pressable, StyleSheet, View, ViewStyle } from 'react-native'
+import {  Pressable, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native'
 import Text from '../text'
 
 interface IProps {
@@ -11,9 +11,9 @@ interface IProps {
 const Button:FunctionComponent<IProps> = (props) => {
     const {children, onPress,style} = props
     return (
-        <Pressable style={[styles.container,style]} onPress={onPress}>
+        <TouchableOpacity style={[styles.container,style]} onPress={onPress}>
             <Text onPress={onPress}>{children}</Text>
-        </Pressable>
+        </TouchableOpacity>
     )
 }
 
